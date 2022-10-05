@@ -1,10 +1,11 @@
-package com.bridgelabzuc11;
+package com.bridgelabzuc12;
 
 import java.util.Scanner;
 
 
-public class AddressBookMain {
 
+public class AddressBookMain {
+	
 	public static void main(String[] args) {
 		Scanner s = new Scanner(System.in);
 		int ch,count;
@@ -23,10 +24,12 @@ public class AddressBookMain {
 			System.out.println("8.View By City name");
 			System.out.println("9.Count Persons By City");
 			System.out.println("10.Count Persons By State");
+			System.out.println("11.Sort by first name");
+			System.out.println("12.Sort by city name");
+			System.out.println("13.Sort by state name");
+			System.out.println("14.Sort by zip code");
 			ch= s.nextInt();
-			
 			switch(ch) {
-			
 			case 1: 
 				c.readData();
 				break;
@@ -87,10 +90,24 @@ public class AddressBookMain {
 				c.sortByFirstName();
 				break;
 				
+			case 12:
+				c.sortByCity();;
+				break;
+				
+			case 13:
+				c.sortByState();;
+				break;
+				
+			case 14:
+				c.sortByZip();
+				break;
+				
 			}System.out.println("Do you want to continue? if yes press '1' ");
 			ans = s.nextInt();
-		}while(ans == 1);
+		}
+		while(ans == 1);
 		s.close();
 	}
+
 
 }

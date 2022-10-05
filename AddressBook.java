@@ -1,4 +1,4 @@
-package com.bridgelabzuc11;
+package com.bridgelabzuc12;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -18,6 +18,7 @@ public class AddressBook {
 	
 	ArrayList<Person> contactBook = new ArrayList<>();
 	Scanner s = new Scanner(System.in);
+	
 	public void readData() {
 		boolean duplicate;
 		System.out.println("Enter the first name : ");
@@ -36,7 +37,6 @@ public class AddressBook {
 		phoneNo = s.nextLong();
 		System.out.println("Enter the email : ");
 		email = s.next();
-		
 		AddressBook book = new AddressBook();
 		duplicate = book.checkDuplicateName( first ,last);
 		if(duplicate == false) {
@@ -60,7 +60,6 @@ public class AddressBook {
 		}
 		return duplicate;
 	}
-	
 	public void editData(String name) {
 		int i,ans;
 		for(i=0;i<contactBook.size();i++) {
@@ -183,7 +182,6 @@ public class AddressBook {
 		int count = 0 ;
 		ArrayList<Person> list = (ArrayList<Person>) contactBook.stream().filter(contactName -> contactName.getCity().equals(city))
 				.collect(Collectors.toList());
-		
 		for (Person contact : list) {
 			System.out.println("Name: " + contact.getFirstName()+ "  " + contact.getLastName());
 			count +=1;
@@ -197,6 +195,30 @@ public class AddressBook {
 			System.out.println("Name: " + contact.getFirstName()+ "  " + contact.getLastName());
 		}
 	}
+	public void sortByCity() {
+		ArrayList<Person>  sortedList = (ArrayList<Person>) contactBook.stream().sorted((type1, type2) -> (type1.getCity().compareTo(type2.getCity()))).collect(Collectors.toList());
+		for (Person contact : sortedList) {
+			System.out.println("Name: " + contact.getFirstName()+ "  " + contact.getLastName());
+			System.out.println("City: " + contact.getCity());
+			System.out.println("\n");
+		}
+	}
+	public void sortByState() {
+		ArrayList<Person>  sortedList = (ArrayList<Person>) contactBook.stream().sorted((type1, type2) -> (type1.getState().compareTo(type2.getState()))).collect(Collectors.toList());
+		for (Person contact : sortedList) {
+			System.out.println("Name: " + contact.getFirstName()+ "  " + contact.getLastName());
+			System.out.println("State: " +contact.getState());
+			System.out.println("\n");
+		}
+	}
+	public void sortByZip() {
+		ArrayList<Person>  sortedList = (ArrayList<Person>) contactBook.stream().sorted((type1, type2) -> (int)(type1.getZip() - type2.getZip())).collect(Collectors.toList());
+		for (Person contact : sortedList) {
+			System.out.println("Name: " + contact.getFirstName()+ "  " + contact.getLastName());
+			System.out.println("Zip: " + contact.getZip());
+			System.out.println("\n");
+		}
+	}
 	
 	public void DisplayContacts() {
 		System.out.println("\nContacts Present in Address Book:");
@@ -204,5 +226,4 @@ public class AddressBook {
 			System.out.println(contactBook.get(i));
 		}
 	}
-
 }
